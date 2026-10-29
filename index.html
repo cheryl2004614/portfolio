@@ -1,567 +1,493 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cheryl Shirwatso Matildah | IT Portfolio</title>
+
+    <title>Cheryl Shirwatso | IT Portfolio</title>
 
     <style>
+        :root {
+            --bg: #080b16;
+            --card: #11172a;
+            --accent: #6c4cff;
+            --accent2: #00c2ff;
+            --text: #f5f7ff;
+            --muted: #b7bfd5;
+            --border: rgba(255, 255, 255, 0.12);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        html {
             scroll-behavior: smooth;
         }
 
         body {
-            background: #080b16;
-            color: white;
-            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at 15% 15%, #21144a 0, transparent 35%),
+                radial-gradient(circle at 90% 30%, #052b45 0, transparent 30%),
+                var(--bg);
+            color: var(--text);
+            line-height: 1.7;
             overflow-x: hidden;
         }
 
-        body::before,
-        body::after {
-            content: "";
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(180px);
-            pointer-events: none;
-            z-index: -2;
+        a {
+            color: inherit;
+            text-decoration: none;
         }
 
-        body::before {
-            width: 500px;
-            height: 500px;
-            background: #6c4cff;
-            opacity: 0.25;
-            top: -150px;
-            left: -150px;
+        button,
+        input,
+        textarea {
+            font: inherit;
         }
 
-        body::after {
-            width: 400px;
-            height: 400px;
-            background: #00d9ff;
-            opacity: 0.15;
-            right: -100px;
-            bottom: -100px;
+        button,
+        .button {
+            cursor: pointer;
+        }
+
+        .container {
+            width: min(1100px, 90%);
+            margin: auto;
         }
 
         /* Navigation */
-        nav {
-            width: 90%;
-            margin: 25px auto;
-            padding: 18px 30px;
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(8, 11, 22, 0.94);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .navbar {
+            min-height: 76px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
             gap: 20px;
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 20px;
-            backdrop-filter: blur(15px);
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 1.35rem;
             font-weight: bold;
-            color: #8b7cff;
+            color: var(--text);
         }
 
-        nav ul {
-            list-style: none;
+        .logo span {
+            color: var(--accent2);
+        }
+
+        #nav-links {
             display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
+            align-items: center;
+            gap: 18px;
+            list-style: none;
         }
 
-        nav ul a {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-            transition: 0.3s;
+        #nav-links a {
+            display: block;
+            color: var(--muted);
+            font-size: 0.9rem;
+            transition: color 0.3s;
         }
 
-        nav ul a:hover {
-            color: #00d9ff;
+        #nav-links a:hover,
+        #nav-links a:focus {
+            color: var(--accent2);
+        }
+
+        .menu-toggle {
+            display: none;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 6px 12px;
+            color: var(--text);
+            background: var(--card);
+            font-size: 1.5rem;
+        }
+
+        /* General sections */
+        section {
+            padding: 85px 0;
+            scroll-margin-top: 85px;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 14px;
+            text-align: center;
+        }
+
+        .section-title span {
+            color: var(--accent2);
+        }
+
+        .section-intro {
+            max-width: 700px;
+            margin: 0 auto 35px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .accent-text {
+            color: var(--accent2);
+        }
+
+        .muted {
+            color: var(--muted);
         }
 
         /* Hero section */
-        .hero {
-            width: 90%;
-            max-width: 1200px;
-            margin: 70px auto;
+        #home {
+            min-height: 85vh;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 50px;
+            padding-top: 60px;
         }
 
-        .hero-text {
-            max-width: 650px;
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            gap: 55px;
         }
 
-        .small-title {
-            color: #8b7cff;
-            font-size: 18px;
-            margin-bottom: 15px;
+        .eyebrow {
+            color: var(--accent2);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            font-weight: bold;
         }
 
         .hero h1 {
-            font-size: 56px;
+            font-size: clamp(2.5rem, 6vw, 4.6rem);
             line-height: 1.15;
-            margin-bottom: 15px;
+            margin: 15px 0;
         }
 
         .hero h1 span {
-            background: linear-gradient(90deg, #8b7cff, #00d9ff);
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
-        .hero h2 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #e5e7ff;
-        }
-
         .hero p {
-            color: #b8bdd0;
-            font-size: 18px;
-            line-height: 1.7;
-            margin-bottom: 30px;
+            color: var(--muted);
+            margin-bottom: 25px;
+            max-width: 600px;
         }
 
-        /* Profile picture */
-        .profile-container {
-            width: 380px;
-            height: 380px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-shrink: 0;
-        }
-
-        .profile-picture {
-            width: 350px;
-            height: 350px;
-            object-fit: cover;
-            object-position: center;
-            border-radius: 50%;
-            border: 5px solid #8b7cff;
-            box-shadow:
-                0 0 30px rgba(139,124,255,0.5),
-                0 0 60px rgba(0,217,255,0.2);
-            transition: transform 0.3s ease;
-        }
-
-        /* Buttons */
-        .buttons {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 14px 25px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
+        .button {
             display: inline-block;
-        }
-
-        .primary {
-            background: linear-gradient(90deg, #6c4cff, #00bfff);
+            padding: 12px 22px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(100deg, var(--accent), #287be8);
             color: white;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .secondary {
-            border: 1px solid #555b75;
-            color: white;
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(108, 76, 255, 0.3);
         }
 
-        .btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        .button-outline {
+            background: transparent;
+            border: 1px solid var(--accent2);
+            margin-left: 8px;
         }
 
-        /* General sections */
-        .section {
-            width: 90%;
-            max-width: 1100px;
-            margin: 100px auto;
-            scroll-margin-top: 30px;
-        }
-
-        .section h2 {
-            font-size: 38px;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .section-text {
-            color: #9fa5ba;
-            margin-bottom: 40px;
-            line-height: 1.7;
-            text-align: center;
-        }
-
-        /* About */
-        .about-box {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
-            padding: 35px;
-            backdrop-filter: blur(10px);
-        }
-
-        .about-box p {
-            color: #b8bdd0;
-            font-size: 16px;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-
-        .about-box p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Skills */
-        .skill-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .skill-card {
-            padding: 30px 20px;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            transition: 0.4s;
-            text-align: center;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-10px);
-            border-color: #8b7cff;
-            box-shadow: 0 15px 35px rgba(108,76,255,0.2);
-        }
-
-        .skill-icon {
-            font-size: 40px;
-            margin-bottom: 15px;
-        }
-
-        .skill-card h3 {
-            margin-bottom: 10px;
-        }
-
-        .skill-card p {
-            color: #9fa5ba;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        /* Interests */
-        .interest-list {
+        /* 3D profile card */
+        .hero-visual {
+            perspective: 1000px;
             display: flex;
             justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
         }
 
-        .interest {
-            padding: 12px 20px;
-            border-radius: 25px;
-            background: rgba(139,124,255,0.12);
-            border: 1px solid rgba(139,124,255,0.3);
-            color: #d9d6ff;
-            transition: 0.3s;
-        }
-
-        .interest:hover {
-            background: rgba(139,124,255,0.25);
-        }
-
-        /* Education */
-        .education-box {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
-            padding: 30px;
-        }
-
-        .education-box h3 {
-            color: #8b7cff;
-            margin-bottom: 10px;
-        }
-
-        .education-box p {
-            color: #b8bdd0;
-            line-height: 1.7;
-            margin-bottom: 8px;
-        }
-
-        /* Experience and activities */
-        .activity-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .activity-box {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
-            padding: 30px;
-            transition: 0.3s;
-        }
-
-        .activity-box:hover {
-            transform: translateY(-8px);
-            border-color: #8b7cff;
-            box-shadow: 0 15px 35px rgba(108,76,255,0.2);
-        }
-
-        .activity-icon {
-            font-size: 38px;
-            margin-bottom: 15px;
-        }
-
-        .activity-box h3 {
-            color: #8b7cff;
-            margin-bottom: 12px;
-        }
-
-        .activity-box p {
-            color: #b8bdd0;
-            line-height: 1.7;
-        }
-
-        /* Hobbies */
-        .hobby-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .hobby-card {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-            transition: 0.4s;
-        }
-
-        .hobby-card:hover {
-            transform: translateY(-10px);
-            border-color: #8b7cff;
-            box-shadow: 0 15px 35px rgba(108,76,255,0.25);
-        }
-
-        .hobby-image {
-            width: 100%;
-            height: 230px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .hobby-content {
+        .profile-card {
+            width: min(330px, 100%);
             padding: 25px;
-        }
-
-        .hobby-content h3 {
-            color: #8b7cff;
-            margin-bottom: 12px;
-            font-size: 22px;
-        }
-
-        .hobby-content p {
-            color: #b8bdd0;
-            line-height: 1.7;
-            font-size: 15px;
-        }
-
-        /* Contact */
-        .contact-box {
+            border: 1px solid rgba(0, 194, 255, 0.35);
+            border-radius: 24px;
             text-align: center;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: linear-gradient(
+                145deg,
+                rgba(108, 76, 255, 0.18),
+                rgba(0, 194, 255, 0.08),
+                var(--card)
+            );
+            box-shadow: 0 20px 70px rgba(0, 0, 0, 0.3);
+            transform: rotateY(-8deg) rotateX(4deg);
+            transition: transform 0.4s;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .profile-card:hover {
+            transform: rotateY(0deg) rotateX(0deg) translateY(-5px);
+        }
+
+        .profile-photo {
+            width: 190px;
+            height: 190px;
+            max-width: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--accent2);
+            box-shadow: 0 0 30px rgba(0, 194, 255, 0.22);
+        }
+
+        .profile-card h2 {
+            margin-top: 15px;
+            font-size: 1.35rem;
+        }
+
+        .profile-card p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+        }
+
+        @keyframes float {
+            0%, 100% { translate: 0 0; }
+            50% { translate: 0 -10px; }
+        }
+
+        /* Cards and grids */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            padding: 24px;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            background: rgba(17, 23, 42, 0.86);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent2);
+        }
+
+        .card h3 {
+            color: var(--accent2);
+            margin-bottom: 10px;
+        }
+
+        .card p,
+        .card li {
+            color: var(--muted);
+        }
+
+        .card ul {
+            padding-left: 20px;
+        }
+
+        .skill-label {
+            display: inline-block;
+            padding: 7px 12px;
+            margin: 5px;
             border-radius: 20px;
-            padding: 35px;
+            border: 1px solid rgba(0, 194, 255, 0.35);
+            background: rgba(0, 194, 255, 0.08);
+            color: var(--text);
         }
 
-        .contact-box p {
-            color: #b8bdd0;
-            margin: 10px;
+        /* Dynamic content */
+        #dynamic-message {
+            color: var(--muted);
+            margin-top: 18px;
+            white-space: pre-line;
         }
 
-        .social-links {
+        .dynamic-area {
+            text-align: center;
             margin-top: 25px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
         }
 
-        .social-links a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 18px;
-            border: 1px solid #555b75;
-            border-radius: 20px;
-            transition: 0.3s;
+        /* Contact form */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 30px;
+            align-items: start;
         }
 
-        .social-links a:hover {
-            border-color: #8b7cff;
-            color: #8b7cff;
+        .contact-form {
+            padding: 25px;
+            background: rgba(17, 23, 42, 0.9);
+            border: 1px solid var(--border);
+            border-radius: 15px;
         }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px;
-            margin-top: 80px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #8d93a8;
+        .form-group {
+            margin-bottom: 17px;
         }
 
-        /* 3D background */
-        #bg3d {
-            position: fixed;
-            inset: 0;
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
             width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #39425d;
+            background: #090e1d;
+            color: var(--text);
         }
 
-        .tilt {
-            transform-style: preserve-3d;
-            will-change: transform;
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: 2px solid var(--accent2);
+            border-color: transparent;
+        }
+
+        .form-group textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        #form-message {
+            margin-top: 15px;
+            font-weight: bold;
+            overflow-wrap: anywhere;
+        }
+
+        .error-message {
+            color: #ff8585;
+        }
+
+        .success-message {
+            color: #65e6a8;
+        }
+
+        footer {
+            border-top: 1px solid var(--border);
+            text-align: center;
+            padding: 25px 0;
+            color: var(--muted);
         }
 
         /* Responsive design */
-        @media (max-width: 1000px) {
-            nav {
-                flex-direction: column;
+        @media (max-width: 900px) {
+            #nav-links {
+                gap: 11px;
             }
 
-            nav ul {
-                justify-content: center;
+            #nav-links a {
+                font-size: 0.82rem;
             }
 
             .hero {
-                gap: 25px;
+                gap: 30px;
             }
 
-            .hero h1 {
-                font-size: 44px;
-            }
-
-            .profile-container {
-                width: 300px;
-                height: 300px;
-            }
-
-            .profile-picture {
-                width: 280px;
-                height: 280px;
+            .grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
         }
 
-        @media (max-width: 850px) {
-            nav ul {
+        @media (max-width: 768px) {
+            .navbar {
+                position: relative;
+                flex-wrap: wrap;
+                padding: 15px 0;
+            }
+
+            .menu-toggle {
+                display: block;
+                margin-left: auto;
+            }
+
+            #nav-links {
                 display: none;
+                flex-direction: column;
+                align-items: stretch;
+                width: 100%;
+                gap: 0;
+                padding: 8px 0;
+            }
+
+            #nav-links.active {
+                display: flex;
+            }
+
+            #nav-links li a {
+                padding: 10px 5px;
+                font-size: 1rem;
             }
 
             .hero {
-                flex-direction: column-reverse;
+                grid-template-columns: 1fr;
                 text-align: center;
             }
 
-            .hero h1 {
-                font-size: 42px;
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
             }
 
-            .buttons {
-                justify-content: center;
+            .hero-visual {
+                margin-top: 20px;
             }
 
-            .skill-container {
-                grid-template-columns: repeat(2, 1fr);
+            .profile-card {
+                transform: none;
             }
 
-            .activity-container,
-            .hobby-container {
+            .contact-layout {
                 grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 65px 0;
             }
         }
 
-        @media (max-width: 500px) {
-            .section h2 {
-                font-size: 30px;
-            }
-
-            .hero h1 {
-                font-size: 35px;
-            }
-
-            .hero h2 {
-                font-size: 20px;
-            }
-
-            .hero p {
-                font-size: 16px;
-            }
-
-            .profile-container {
-                width: 270px;
-                height: 270px;
-            }
-
-            .profile-picture {
-                width: 250px;
-                height: 250px;
-            }
-
-            .skill-container {
+        @media (max-width: 520px) {
+            .grid {
                 grid-template-columns: 1fr;
             }
 
-            .about-box,
-            .education-box,
-            .activity-box,
-            .contact-box {
-                padding: 22px;
+            .button {
+                margin: 5px 3px;
             }
 
-            .section {
-                margin: 70px auto;
+            .profile-photo {
+                width: 160px;
+                height: 160px;
+            }
+
+            .card {
+                padding: 20px;
             }
         }
 
         @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
-            }
-
             *,
             *::before,
             *::after {
-                animation: none !important;
-                transition: none !important;
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
             }
         }
     </style>
@@ -570,666 +496,376 @@
 <body>
 
     <!-- Navigation -->
-    <nav>
-        <div class="logo">Cheryl.</div>
+    <header>
+        <div class="container navbar">
+            <a href="#home" class="logo">Cheryl<span>.</span></a>
 
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#interests">Interests</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#hobbies">Hobbies</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+            <button
+                id="menu-toggle"
+                class="menu-toggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-controls="nav-links"
+                aria-expanded="false">
+                ☰
+            </button>
 
-    <!-- Hero section -->
-    <section class="hero">
-        <div class="hero-text">
-            <div class="small-title">👋 Hello, I'm</div>
-
-            <h1>
-                Cheryl
-                <span>Shirwatso Matildah</span>
-            </h1>
-
-            <h2>IT Student @ Africa International University</h2>
-
-            <p>
-                I am an Information Technology student with an interest in
-                technology, web development and information systems. I enjoy
-                learning how technology can be used to solve real-world
-                problems.
-            </p>
-
-            <div class="buttons">
-                <a href="#skills" class="btn primary">Explore My Skills</a>
-                <a href="#contact" class="btn secondary">Contact Me</a>
-            </div>
+            <ul id="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#interests">Interests</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#hobbies">Hobbies</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </div>
+    </header>
 
-        <div class="profile-container">
-            <img
-                src="profile.jpg"
-                alt="Cheryl Shirwatso Matildah"
-                class="profile-picture"
-            >
-        </div>
-    </section>
+    <main>
+        <!-- Home -->
+        <section id="home">
+            <div class="container hero">
+                <div>
+                    <p class="eyebrow">Welcome to my portfolio</p>
 
-    <!-- About -->
-    <section class="section" id="about">
-        <h2>About Me</h2>
+                    <h1>
+                        Hi, I'm <span>Cheryl Shirwatso</span>
+                    </h1>
 
-        <div class="about-box">
-            <p>
-                My name is Cheryl Shirwatso Matildah, and I am an Information
-                Technology student with an interest in technology, web
-                development and information systems.
-            </p>
+                    <h2>IT Student | Aspiring Web Developer</h2>
 
-            <p>
-                I enjoy learning how technology can be used to solve real-world
-                problems. Through my academic work, I have gained experience
-                in web development, databases, programming and system analysis.
-            </p>
-
-            <p>
-                Outside technology, I enjoy athletics, karate and environmental
-                activities. These interests have helped me develop discipline,
-                confidence, teamwork and a strong sense of responsibility.
-            </p>
-
-            <p>
-                My goal is to continue developing my technical skills while
-                growing personally and professionally and using technology
-                to create useful solutions.
-            </p>
-        </div>
-    </section>
-
-    <!-- Skills -->
-    <section class="section" id="skills">
-        <h2>My Skills</h2>
-
-        <p class="section-text">
-            Skills and areas I am developing through my studies and practical
-            learning.
-        </p>
-
-        <div class="skill-container">
-            <div class="skill-card">
-                <div class="skill-icon">🌐</div>
-                <h3>HTML & CSS</h3>
-                <p>
-                    Creating and designing responsive and user-friendly
-                    websites using HTML and CSS.
-                </p>
-            </div>
-
-            <div class="skill-card">
-                <div class="skill-icon">☕</div>
-                <h3>Java</h3>
-                <p>
-                    Learning object-oriented programming, classes, objects
-                    and application development.
-                </p>
-            </div>
-
-            <div class="skill-card">
-                <div class="skill-icon">🗄️</div>
-                <h3>Databases</h3>
-                <p>
-                    Working with SQL, database design, relationships and
-                    data management.
-                </p>
-            </div>
-
-            <div class="skill-card">
-                <div class="skill-icon">💻</div>
-                <h3>Web Development</h3>
-                <p>
-                    Building practical websites and digital solutions using
-                    web technologies.
-                </p>
-            </div>
-
-            <div class="skill-card">
-                <div class="skill-icon">🤝</div>
-                <h3>Teamwork</h3>
-                <p>
-                    Working collaboratively with others on academic projects
-                    and technology-based activities.
-                </p>
-            </div>
-
-            <div class="skill-card">
-                <div class="skill-icon">🌱</div>
-                <h3>Environmental Activities</h3>
-                <p>
-                    Participating in environmental learning, conservation
-                    and community activities.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Interests -->
-    <section class="section" id="interests">
-        <h2>My Interests</h2>
-
-        <p class="section-text">
-            Areas I am passionate about and interested in exploring.
-        </p>
-
-        <div class="interest-list">
-            <div class="interest">👩🏽‍💻 Women in Tech Advocacy</div>
-            <div class="interest">💻 Coding</div>
-            <div class="interest">🏃🏽‍♀️ Athletics</div>
-            <div class="interest">🥋 Karate</div>
-            <div class="interest">🌱 Environmental Conservation</div>
-            <div class="interest">💙 Personal Growth</div>
-        </div>
-    </section>
-
-    <!-- Education -->
-    <section class="section" id="education">
-        <h2>Education</h2>
-
-        <p class="section-text">My academic background.</p>
-
-        <div class="education-box">
-            <h3>🎓 Africa International University</h3>
-
-            <p><strong>Information Technology</strong></p>
-
-            <p>School of Computing and Emerging Technologies</p>
-
-            <p>
-                My studies include programming, databases, web development,
-                information systems, system analysis and IT project management.
-            </p>
-        </div>
-    </section>
-
-    <!-- Experience and activities -->
-    <section class="section" id="experience">
-        <h2>Experience & Activities</h2>
-
-        <p class="section-text">
-            Activities and experiences that have helped me develop
-            professionally and personally.
-        </p>
-
-        <div class="activity-container">
-            <div class="activity-box">
-                <div class="activity-icon">🌱</div>
-                <h3>Environmental Activities</h3>
-                <p>
-                    I am interested in environmental conservation and
-                    community activities that promote awareness, restoration
-                    and a cleaner environment.
-                </p>
-            </div>
-
-            <div class="activity-box">
-                <div class="activity-icon">💻</div>
-                <h3>Technology Learning</h3>
-                <p>
-                    I continue to develop my IT skills through practical
-                    learning in web development, databases, programming
-                    and information systems.
-                </p>
-            </div>
-
-            <div class="activity-box">
-                <div class="activity-icon">👩🏽‍💻</div>
-                <h3>Women in Technology</h3>
-                <p>
-                    I am interested in encouraging women and girls to explore
-                    technology and build confidence in digital skills.
-                </p>
-            </div>
-
-            <div class="activity-box">
-                <div class="activity-icon">🤝</div>
-                <h3>Teamwork and Collaboration</h3>
-                <p>
-                    I value working with others, sharing ideas and learning
-                    together to achieve common goals.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Hobbies -->
-    <section class="section" id="hobbies">
-        <h2>My Hobbies</h2>
-
-        <p class="section-text">
-            Activities I enjoy and the lessons they have taught me.
-        </p>
-
-        <div class="hobby-container">
-            <div class="hobby-card">
-                <img
-                    src="athletics.jpg"
-                    alt="Cheryl participating in athletics"
-                    class="hobby-image"
-                >
-
-                <div class="hobby-content">
-                    <h3>🏃🏽‍♀️ Athletics</h3>
                     <p>
-                        I enjoy athletics because it keeps me active, focused
-                        and motivated. It has taught me patience, discipline
-                        and the importance of working hard towards my goals.
+                        I am an IT student at Africa International University
+                        with an interest in technology, web development,
+                        databases and information systems.
+                    </p>
+
+                    <a href="#about" class="button">Discover More</a>
+                    <a href="#contact" class="button button-outline">
+                        Contact Me
+                    </a>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="profile-card">
+                        <img
+                            src="profile.jpg"
+                            alt="Cheryl Shirwatso profile"
+                            class="profile-photo">
+
+                        <h2>Cheryl Shirwatso</h2>
+                        <p class="accent-text">IT Student @ AIU</p>
+                        <p>Learning, creating and growing through technology.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">About <span>Me</span></h2>
+
+                <p class="section-intro">
+                    A little about my background, interests and goals.
+                </p>
+
+                <div class="card">
+                    <p>
+                        My name is Cheryl Shirwatso Matildah. I am an IT student
+                        at Africa International University, School of Computing
+                        and Emerging Technologies. I enjoy learning how
+                        technology can solve everyday problems.
+                    </p>
+
+                    <p style="margin-top: 14px;">
+                        I am developing my skills in programming, web
+                        development, database management and information
+                        systems. My goal is to keep learning and use technology
+                        to create useful and user-friendly solutions.
+                    </p>
+
+                    <div class="dynamic-area">
+                        <button
+                            type="button"
+                            id="message-button"
+                            class="button">
+                            Learn More About Me
+                        </button>
+
+                        <p id="dynamic-message" aria-live="polite"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section id="skills">
+            <div class="container">
+                <h2 class="section-title">My <span>Skills</span></h2>
+
+                <p class="section-intro">
+                    Skills I am learning and developing through my studies
+                    and personal practice.
+                </p>
+
+                <div class="grid">
+                    <article class="card">
+                        <h3>HTML and CSS</h3>
+                        <p>Creating and styling web pages.</p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Java</h3>
+                        <p>Learning programming concepts and problem-solving.</p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Databases</h3>
+                        <p>Learning database design, SQL and data management.</p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Web Development</h3>
+                        <p>Building interactive and responsive websites.</p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Teamwork</h3>
+                        <p>Working with others to achieve shared goals.</p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Problem-Solving</h3>
+                        <p>Using logical thinking to approach challenges.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interests -->
+        <section id="interests">
+            <div class="container">
+                <h2 class="section-title">My <span>Interests</span></h2>
+
+                <div class="grid">
+                    <article class="card">
+                        <h3>Technology</h3>
+                        <p>
+                            Exploring technology and digital solutions to
+                            everyday problems.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Women in Tech</h3>
+                        <p>
+                            Supporting learning, participation and opportunities
+                            for women in technology.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Environmental Conservation</h3>
+                        <p>
+                            Taking an interest in environmental awareness,
+                            conservation and sustainability.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section id="education">
+            <div class="container">
+                <h2 class="section-title">My <span>Education</span></h2>
+
+                <div class="card">
+                    <h3>Africa International University</h3>
+                    <p>
+                        Information Technology Student
+                    </p>
+                    <p>
+                        School of Computing and Emerging Technologies (SCET),
+                        Karen Campus.
                     </p>
                 </div>
             </div>
+        </section>
 
-            <div class="hobby-card">
-                <img
-                    src="karate.jpg"
-                    alt="Cheryl practicing karate"
-                    class="hobby-image"
-                >
+        <!-- Experience -->
+        <section id="experience">
+            <div class="container">
+                <h2 class="section-title">My <span>Experience</span></h2>
 
-                <div class="hobby-content">
-                    <h3>🥋 Karate</h3>
-                    <p>
-                        Karate helps me build discipline, confidence, strength
-                        and self-control while teaching me to stay determined.
-                    </p>
+                <p class="section-intro">
+                    My learning journey includes academic activities,
+                    personal practice and environmental involvement.
+                </p>
+
+                <div class="grid">
+                    <article class="card">
+                        <h3>Academic Projects</h3>
+                        <p>
+                            Developing practical skills through coursework
+                            involving databases, programming and web development.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Environmental Activities</h3>
+                        <p>
+                            Interested in environmental awareness, conservation
+                            and community participation.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Continuous Learning</h3>
+                        <p>
+                            Improving my digital skills through practice,
+                            research and collaboration.
+                        </p>
+                    </article>
                 </div>
             </div>
+        </section>
 
-            <div class="hobby-card">
-                <img
-                    src="environment.jpg"
-                    alt="Cheryl participating in an environmental activity"
-                    class="hobby-image"
-                >
+        <!-- Hobbies -->
+        <section id="hobbies">
+            <div class="container">
+                <h2 class="section-title">My <span>Hobbies</span></h2>
 
-                <div class="hobby-content">
-                    <h3>🌱 Environmental Conservation</h3>
-                    <p>
-                        I care about the environment and enjoy taking part in
-                        activities that promote conservation, awareness and
-                        positive change in the community.
-                    </p>
+                <p class="section-intro">
+                    Activities I enjoy outside my academic work.
+                </p>
+
+                <div class="grid">
+                    <article class="card">
+                        <h3>Athletics</h3>
+                        <p>
+                            I enjoy athletics and activities that promote
+                            fitness, discipline and teamwork.
+                        </p>
+                        <img
+                            src="athletics.jpg"
+                            alt="Athletics activity"
+                            loading="lazy"
+                            style="width:100%; margin-top:15px; border-radius:10px;">
+                    </article>
+
+                    <article class="card">
+                        <h3>Karate</h3>
+                        <p>
+                            Karate interests me because it encourages focus,
+                            patience and self-discipline.
+                        </p>
+                        <img
+                            src="karate.jpg"
+                            alt="Karate activity"
+                            loading="lazy"
+                            style="width:100%; margin-top:15px; border-radius:10px;">
+                    </article>
+
+                    <article class="card">
+                        <h3>Environmental Conservation</h3>
+                        <p>
+                            I enjoy learning about and supporting activities
+                            that protect the environment.
+                        </p>
+                        <img
+                            src="environment.jpg"
+                            alt="Environmental conservation activity"
+                            loading="lazy"
+                            style="width:100%; margin-top:15px; border-radius:10px;">
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact -->
-    <section class="section" id="contact">
-        <h2>Contact Me</h2>
+        <!-- Contact -->
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title">Contact <span>Me</span></h2>
 
-        <div class="contact-box">
-            <p>
-                📧 <strong>Email:</strong>
-                <a
-                    href="mailto:cherylshirwatso@gmail.com"
-                    style="color: #00d9ff; text-decoration: none;"
-                >
-                    cherylshirwatso@gmail.com
-                </a>
-            </p>
+                <p class="section-intro">
+                    Have a question or want to connect? Use the form below.
+                </p>
 
-            <div class="social-links">
-                <!-- Replace # with your real profile links -->
-                <a href="#" target="_blank" rel="noopener noreferrer">
-                    TikTok: Č̣Ŝ MÁŤÌĻÐÄĤ🦋💙
-                </a>
+                <div class="contact-layout">
+                    <div class="card">
+                        <h3>Let's Connect</h3>
+                        <p>
+                            I welcome opportunities to learn, collaborate
+                            and connect with others interested in technology.
+                        </p>
 
-                <a href="#" target="_blank" rel="noopener noreferrer">
-                    Facebook: Cheryl Matilda
-                </a>
+                        <p style="margin-top: 15px;">
+                            <strong>Email:</strong><br>
+                            <a href="mailto:cherylshirwatso@gmail.com">
+                                cherylshirwatso@gmail.com
+                            </a>
+                        </p>
+                    </div>
 
-                <a href="#" target="_blank" rel="noopener noreferrer">
-                    LinkedIn: Cheryl Shirwatso
-                </a>
+                    <form id="contact-form" class="contact-form" novalidate>
+                        <div class="form-group">
+                            <label for="contact-name">Your Name</label>
+                            <input
+                                type="text"
+                                id="contact-name"
+                                name="name"
+                                placeholder="Enter your name"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-email">Email Address</label>
+                            <input
+                                type="email"
+                                id="contact-email"
+                                name="email"
+                                placeholder="Enter your email"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-message">Your Message</label>
+                            <textarea
+                                id="contact-message"
+                                name="message"
+                                placeholder="Write your message"
+                                required></textarea>
+                        </div>
+
+                        <button type="submit" class="button">
+                            Validate Message
+                        </button>
+
+                        <p
+                            id="form-message"
+                            role="status"
+                            aria-live="polite">
+                        </p>
+                    </form>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Footer -->
     <footer>
-        © 2026 Cheryl Shirwatso Matildah. All Rights Reserved.
+        <div class="container">
+            <p>
+                &copy; <span id="current-year"></span>
+                Cheryl Shirwatso Matildah. All rights reserved.
+            </p>
+        </div>
     </footer>
 
-    <!-- Three.js library for the 3D background -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-    <!-- 3D background and interactive card effects -->
-    <script>
-        (() => {
-            "use strict";
-
-            const reduceMotion = window.matchMedia(
-                "(prefers-reduced-motion: reduce)"
-            ).matches;
-
-            const isTouch = window.matchMedia(
-                "(hover: none)"
-            ).matches;
-
-            /* Create the 3D background */
-            if (typeof THREE !== "undefined") {
-                const canvas = document.createElement("canvas");
-                canvas.id = "bg3d";
-                document.body.prepend(canvas);
-
-                const renderer = new THREE.WebGLRenderer({
-                    canvas: canvas,
-                    alpha: true,
-                    antialias: true
-                });
-
-                renderer.setPixelRatio(
-                    Math.min(window.devicePixelRatio, 2)
-                );
-
-                renderer.setSize(
-                    window.innerWidth,
-                    window.innerHeight
-                );
-
-                const scene = new THREE.Scene();
-
-                const camera = new THREE.PerspectiveCamera(
-                    60,
-                    window.innerWidth / window.innerHeight,
-                    0.1,
-                    200
-                );
-
-                camera.position.z = 30;
-
-                const PURPLE = 0x8b7cff;
-                const CYAN = 0x00d9ff;
-
-                const geometries = [
-                    new THREE.IcosahedronGeometry(4, 0),
-                    new THREE.TorusKnotGeometry(2.6, 0.8, 90, 12),
-                    new THREE.OctahedronGeometry(3.4, 0),
-                    new THREE.TorusGeometry(3.2, 0.9, 12, 40),
-                    new THREE.TetrahedronGeometry(3.6, 0),
-                    new THREE.BoxGeometry(4.5, 4.5, 4.5)
-                ];
-
-                const shapes = [];
-                const COUNT = 10;
-
-                for (let i = 0; i < COUNT; i++) {
-                    const material = new THREE.MeshBasicMaterial({
-                        color: i % 2 === 0 ? PURPLE : CYAN,
-                        wireframe: true,
-                        transparent: true,
-                        opacity: 0.35
-                    });
-
-                    const mesh = new THREE.Mesh(
-                        geometries[i % geometries.length],
-                        material
-                    );
-
-                    const side = i % 2 === 0 ? -1 : 1;
-
-                    mesh.position.set(
-                        side * (11 + Math.random() * 8),
-                        -i * 8 + Math.random() * 3,
-                        -4 - Math.random() * 12
-                    );
-
-                    mesh.rotation.set(
-                        Math.random() * 3,
-                        Math.random() * 3,
-                        0
-                    );
-
-                    mesh.userData = {
-                        spin: 0.002 + Math.random() * 0.004,
-                        floatOffset: Math.random() * Math.PI * 2,
-                        baseY: mesh.position.y
-                    };
-
-                    scene.add(mesh);
-                    shapes.push(mesh);
-                }
-
-                /* Create purple and cyan particles */
-                const particleCount =
-                    window.innerWidth < 700 ? 400 : 900;
-
-                const positions = new Float32Array(
-                    particleCount * 3
-                );
-
-                const colors = new Float32Array(
-                    particleCount * 3
-                );
-
-                const color1 = new THREE.Color(PURPLE);
-                const color2 = new THREE.Color(CYAN);
-
-                for (let i = 0; i < particleCount; i++) {
-                    positions[i * 3] =
-                        (Math.random() - 0.5) * 70;
-
-                    positions[i * 3 + 1] =
-                        Math.random() * -90 + 15;
-
-                    positions[i * 3 + 2] =
-                        (Math.random() - 0.5) * 40;
-
-                    const color =
-                        Math.random() > 0.5 ? color1 : color2;
-
-                    colors[i * 3] = color.r;
-                    colors[i * 3 + 1] = color.g;
-                    colors[i * 3 + 2] = color.b;
-                }
-
-                const particleGeometry =
-                    new THREE.BufferGeometry();
-
-                particleGeometry.setAttribute(
-                    "position",
-                    new THREE.BufferAttribute(positions, 3)
-                );
-
-                particleGeometry.setAttribute(
-                    "color",
-                    new THREE.BufferAttribute(colors, 3)
-                );
-
-                const particles = new THREE.Points(
-                    particleGeometry,
-                    new THREE.PointsMaterial({
-                        size: 0.15,
-                        vertexColors: true,
-                        transparent: true,
-                        opacity: 0.7
-                    })
-                );
-
-                scene.add(particles);
-
-                /* Mouse movement */
-                const mouse = { x: 0, y: 0 };
-
-                window.addEventListener("mousemove", (event) => {
-                    mouse.x =
-                        (event.clientX / window.innerWidth - 0.5) * 2;
-
-                    mouse.y =
-                        (event.clientY / window.innerHeight - 0.5) * 2;
-                });
-
-                let scrollY = window.scrollY;
-
-                window.addEventListener("scroll", () => {
-                    scrollY = window.scrollY;
-                }, { passive: true });
-
-                /* Resize the 3D scene */
-                window.addEventListener("resize", () => {
-                    camera.aspect =
-                        window.innerWidth / window.innerHeight;
-
-                    camera.updateProjectionMatrix();
-
-                    renderer.setSize(
-                        window.innerWidth,
-                        window.innerHeight
-                    );
-                });
-
-                /* Animate the shapes and particles */
-                const clock = new THREE.Clock();
-                let cameraY = 0;
-
-                function animate() {
-                    requestAnimationFrame(animate);
-
-                    const time = clock.getElapsedTime();
-
-                    const targetY = -scrollY * 0.012;
-
-                    cameraY += (targetY - cameraY) * 0.06;
-
-                    camera.position.y = cameraY - mouse.y * 1.5;
-
-                    camera.position.x +=
-                        (mouse.x * 2.5 - camera.position.x) * 0.05;
-
-                    camera.lookAt(0, cameraY, 0);
-
-                    if (!reduceMotion) {
-                        shapes.forEach((shape) => {
-                            shape.rotation.x += shape.userData.spin;
-
-                            shape.rotation.y +=
-                                shape.userData.spin * 1.4;
-
-                            shape.position.y =
-                                shape.userData.baseY +
-                                Math.sin(
-                                    time * 0.6 +
-                                    shape.userData.floatOffset
-                                ) * 1.2;
-                        });
-
-                        particles.rotation.y = time * 0.01;
-                    }
-
-                    renderer.render(scene, camera);
-                }
-
-                animate();
-            }
-
-            /* 3D tilt effect on cards */
-            if (!isTouch && !reduceMotion) {
-                const cards = document.querySelectorAll(
-                    ".skill-card, .activity-box, .hobby-card, " +
-                    ".about-box, .education-box, .contact-box, .interest"
-                );
-
-                cards.forEach((card) => {
-                    card.classList.add("tilt");
-
-                    const maxTilt =
-                        card.classList.contains("interest") ? 12 : 9;
-
-                    const noLift =
-                        card.classList.contains("about-box") ||
-                        card.classList.contains("education-box") ||
-                        card.classList.contains("contact-box");
-
-                    const lift = noLift ? 0 : -8;
-
-                    card.addEventListener("mousemove", (event) => {
-                        const rect = card.getBoundingClientRect();
-
-                        const x =
-                            (event.clientX - rect.left) /
-                            rect.width - 0.5;
-
-                        const y =
-                            (event.clientY - rect.top) /
-                            rect.height - 0.5;
-
-                        card.style.transition =
-                            "transform 0.08s ease-out";
-
-                        card.style.transform =
-                            `perspective(900px) ` +
-                            `rotateX(${-y * maxTilt}deg) ` +
-                            `rotateY(${x * maxTilt}deg) ` +
-                            `translateY(${lift}px) scale(1.02)`;
-                    });
-
-                    card.addEventListener("mouseleave", () => {
-                        card.style.transition =
-                            "transform 0.5s ease";
-
-                        card.style.transform = "";
-                    });
-                });
-
-                /* 3D tilt on the profile picture */
-                const picture =
-                    document.querySelector(".profile-picture");
-
-                const pictureContainer =
-                    document.querySelector(".profile-container");
-
-                if (picture && pictureContainer) {
-                    pictureContainer.style.perspective = "800px";
-
-                    pictureContainer.addEventListener(
-                        "mousemove",
-                        (event) => {
-                            const rect =
-                                pictureContainer.getBoundingClientRect();
-
-                            const x =
-                                (event.clientX - rect.left) /
-                                rect.width - 0.5;
-
-                            const y =
-                                (event.clientY - rect.top) /
-                                rect.height - 0.5;
-
-                            picture.style.transform =
-                                `rotateX(${-y * 22}deg) ` +
-                                `rotateY(${x * 22}deg) scale(1.05)`;
-                        }
-                    );
-
-                    pictureContainer.addEventListener(
-                        "mouseleave",
-                        () => {
-                            picture.style.transition =
-                                "transform 0.6s ease";
-
-                            picture.style.transform = "";
-
-                            setTimeout(() => {
-                                picture.style.transition = "";
-                            }, 650);
-                        }
-                    );
-                }
-            }
-        })();
-    </script>
-
+    <!-- External JavaScript file -->
+    <script src="script.js"></script>
 </body>
 </html>
